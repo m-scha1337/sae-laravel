@@ -10,7 +10,7 @@
             <span class="fa fa-gamepad" style="font-size: 128px; margin: 40px 0;"></span>
 
             <p class="lead">
-                Hello World<br><a href="https://github.com/passioncoder/sae-laravel" target="_blank">https://github.com/passioncoder/sae-laravel</a>
+                Hello World :)<br><a href="https://github.com/passioncoder/sae-laravel" target="_blank">https://github.com/passioncoder/sae-laravel</a>
             </p>
 
         </div>
