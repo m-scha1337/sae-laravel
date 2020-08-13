@@ -59,7 +59,9 @@ class PostingController extends Controller
      */
     public function show($id)
     {
-        //
+        $posting = Posting::find($id);
+
+        return view('postings.show', compact('posting')); // ['posting' => $posting]
     }
 
     /**

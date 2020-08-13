@@ -26,6 +26,9 @@
                     <a class="dropdown-item" href="http://stackoverflow.com/questions/tagged/laravel" target="_blank">Ask your questions</a>
                 </div>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('postings.index') }}" class="nav-link">Postings</a>
+            </li>
         </ul>
 
     </div>
