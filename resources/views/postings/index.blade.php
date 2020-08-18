@@ -17,4 +17,8 @@
 		@endforeach
 	</ul>
 
+	<a href="{{ route('postings.create') }}" class="btn btn-primary">
+		<i class="fa fa-plus"></i> Create new posting
+	</a>
+
 @endsection

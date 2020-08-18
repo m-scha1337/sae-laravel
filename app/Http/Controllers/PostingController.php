@@ -35,9 +35,10 @@ class PostingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $posting = new Posting();
+        $posting->fill($request->old());
 
         return view('postings.create', compact('posting'));
     }
@@ -62,6 +63,7 @@ class PostingController extends Controller
         $posting->fill($request->all());
         // $posting->title = $request->get('title');
         // $posting->text = $request->get('text');
+        $posting->is_featured = $request->has('is_featured');
         $posting->save();
 
         return redirect()->route('postings.index')->with('success', 'Posting created!!!');
@@ -86,9 +88,12 @@ class PostingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $posting = Posting::find($id);
+        $posting->fill($request->old());
+
+        return view('postings.edit', compact('posting'));
     }
 
     /**
@@ -100,7 +105,20 @@ class PostingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // https://laravel.com/docs/7.x/validation#available-validation-rules
+
+        $this->validate($request, [
+
+            'title' => 'required|min:3|max:192',
+            'text' => 'nullable',
+        ]);
+
+        $posting = Posting::find($id);
+        $posting->fill($request->all());
+        $posting->is_featured = $request->has('is_featured');
+        $posting->save();
+
+        return redirect()->route('postings.show', $id)->with('success', 'Posting updated!');
     }
 
     /**
@@ -111,6 +129,9 @@ class PostingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $posting = Posting::find($id);
+        $posting->delete();
+
+        return redirect()->route('postings.index')->with('success', 'Posting deleted!');
     }
 }

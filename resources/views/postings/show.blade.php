@@ -28,6 +28,21 @@
 				<i class="fa fa-chevron-left"></i> Back
 			</a>
 
+			<a href="{{ route('postings.edit', $posting->id) }}" class="btn btn-primary">
+				<i class="fa fa-pencil"></i> Edit
+			</a>
+
+			<form method="post" action="{{ route('postings.destroy', $posting->id) }}" autocomplete="off" onsubmit="return confirm('Are you sure?')">
+
+				@method('delete')
+				@csrf
+
+				<button type="submit" class="btn btn-outline-danger mt-2">
+					<i class="fa fa-trash"></i> Delete
+				</button>
+
+			</form>
+
 		</div>
 	</div>
 
