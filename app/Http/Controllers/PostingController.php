@@ -37,7 +37,9 @@ class PostingController extends Controller
      */
     public function create()
     {
-        //
+        $posting = new Posting();
+
+        return view('postings.create', compact('posting'));
     }
 
     /**
@@ -48,7 +50,21 @@ class PostingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // https://laravel.com/docs/7.x/validation#available-validation-rules
+
+        $this->validate($request, [
+
+           'title' => 'required|min:3|max:192',
+           'text' => 'nullable',
+        ]);
+
+        $posting = new Posting();
+        $posting->fill($request->all());
+        // $posting->title = $request->get('title');
+        // $posting->text = $request->get('text');
+        $posting->save();
+
+        return redirect()->route('postings.index')->with('success', 'Posting created!!!');
     }
 
     /**

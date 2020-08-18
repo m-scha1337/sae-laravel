@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Posting extends Model
 {
 
+    protected $fillable = ['title','text'];
+
     // == Scopes
     // https://laravel.com/docs/7.x/eloquent#query-scopes
 
