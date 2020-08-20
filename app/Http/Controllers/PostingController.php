@@ -64,6 +64,7 @@ class PostingController extends Controller
         // $posting->title = $request->get('title');
         // $posting->text = $request->get('text');
         $posting->is_featured = $request->has('is_featured');
+        $posting->user_id = auth()->id();
         $posting->save();
 
         return redirect()->route('postings.index')->with('success', 'Posting created!!!');

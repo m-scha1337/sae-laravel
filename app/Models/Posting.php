@@ -9,6 +9,17 @@ class Posting extends Model
 
     protected $fillable = ['title','text'];
 
+
+    // == Relations
+    // https://laravel.com/docs/7.x/eloquent-relationships
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
+
     // == Scopes
     // https://laravel.com/docs/7.x/eloquent#query-scopes
 

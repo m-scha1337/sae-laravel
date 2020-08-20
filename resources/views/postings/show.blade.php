@@ -17,6 +17,10 @@
 				<p>{{ $posting->text }}</p>
 			@endif
 
+			@if($posting->user)
+				<p>User: {{ $posting->user->name }}</p>
+			@endif
+
 			<p>
 				<i class="fa fa-thumbs-up"></i> {{ $posting->like_count }}
 				<i class="fa fa-thumbs-down ml-2"></i> {{ $posting->dislike_count }}
