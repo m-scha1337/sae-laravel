@@ -16,6 +16,10 @@ class CreatePostings extends Migration
         Schema::create('postings', function (Blueprint $table) {
 
             $table->id();
+
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->string('title');
             $table->text('text')->nullable();
             $table->unsignedInteger('like_count')->default(0);
