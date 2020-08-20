@@ -18,7 +18,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::resource('postings', 'PostingController');
+
+// == Auth
+
+Route::get('/login', 'AuthController@getLogin')->name('auth.getLogin');
+Route::post('/login', 'AuthController@postLogin')->name('auth.postLogin');
+Route::get('/logout', 'AuthController@logout')->name('auth.logout');
+
+
+// == Postings
 
 Route::get('/postings', 'PostingController@index')->name('postings.index');
 Route::get('/postings/create', 'PostingController@create')->name('postings.create');
@@ -27,3 +35,6 @@ Route::get('/postings/{id}', 'PostingController@show')->name('postings.show');
 Route::get('/postings/{id}/edit', 'PostingController@edit')->name('postings.edit');
 Route::put('/postings/{id}', 'PostingController@update')->name('postings.update');
 Route::delete('/postings/{id}', 'PostingController@destroy')->name('postings.destroy');
+
+// Route::resource('postings', 'PostingController');
+
