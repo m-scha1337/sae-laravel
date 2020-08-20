@@ -50,6 +50,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if (get_class($exception) == 'Illuminate\Auth\AuthenticationException') {
+
+            return redirect()->route('auth.getLogin')->with('info', 'Please login');
+        }
+
         return parent::render($request, $exception);
     }
 }
