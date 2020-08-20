@@ -25,7 +25,7 @@ class PostingController extends Controller
 
         // $postings = Posting::featured()->popular()->latest()->get();
 
-        $postings = Posting::all();
+        $postings = Posting::with('user')->get();
 
         return view('postings.index', compact('postings')); // ['postings' => $postings]
     }

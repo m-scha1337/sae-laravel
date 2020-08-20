@@ -13,6 +13,9 @@
 				@if($posting->is_featured)
 					<span>{{ trans('postings.featured') }}</span>
 				@endif
+				@if($posting->user)
+					<br><small>{{ $posting->user->name }}</small>
+				@endif
 			</li>
 		@endforeach
 	</ul>
