@@ -17,6 +17,10 @@
 				<p>{{ $posting->text }}</p>
 			@endif
 
+			@if($posting->image_url)
+				<img class="w-50" src="{{ $posting->image_url }}">
+			@endif
+
 			@if($posting->user)
 				<p>User: {{ $posting->user->name }}</p>
 			@endif

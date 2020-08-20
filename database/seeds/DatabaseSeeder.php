@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -20,5 +21,7 @@ class DatabaseSeeder extends Seeder
         factory(User::class, 10)->create();
 
         $this->call(PostingSeeder::class);
+
+        factory(Category::class, 10)->create();
     }
 }

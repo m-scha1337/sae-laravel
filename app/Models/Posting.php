@@ -18,6 +18,11 @@ class Posting extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
 
 
     // == Scopes
@@ -31,6 +36,14 @@ class Posting extends Model
     public function scopePopular($query)
     {
         return $query->where('like_count', '>', 100);
+    }
+
+
+    // == Attributes
+
+    public function getImageUrlAttribute()
+    {
+        return $this->image_path ? asset('storage/images/' . $this->image_path) : null;
     }
 
 }

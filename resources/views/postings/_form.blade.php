@@ -10,6 +10,11 @@
 </div>
 
 <div class="form-group">
+	<label for="input_image">Image:</label>
+	<input type="file" name="image" class="form-control" id="input_image">
+</div>
+
+<div class="form-group">
 	<input type="checkbox" name="is_featured" id="input_featured" {{ $posting->is_featured ? 'checked' : '' }}>
 	<label for="input_featured">Is featured</label>
 </div>

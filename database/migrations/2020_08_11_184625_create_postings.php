@@ -24,6 +24,7 @@ class CreatePostings extends Migration
             $table->text('text')->nullable();
             $table->unsignedInteger('like_count')->default(0);
             $table->boolean('is_featured')->default(false);
+            $table->string('image_path')->nullable();
             $table->timestamps();
         });
     }

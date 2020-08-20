@@ -7,7 +7,7 @@
 	<div class="card mt-4">
 		<div class="card-body">
 
-			<form method="post" action="{{ route('postings.update', $posting->id) }}" autocomplete="off">
+			<form method="post" action="{{ route('postings.update', $posting->id) }}" enctype="multipart/form-data" autocomplete="off">
 
 				@method('put')
 				@csrf

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Posting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PostingController extends Controller
 {
@@ -57,6 +59,7 @@ class PostingController extends Controller
 
            'title' => 'required|min:3|max:192',
            'text' => 'nullable',
+           'image' => 'nullable|mimes:jpeg,png',
         ]);
 
         $posting = new Posting();
@@ -65,7 +68,17 @@ class PostingController extends Controller
         // $posting->text = $request->get('text');
         $posting->is_featured = $request->has('is_featured');
         $posting->user_id = auth()->id();
+
+        if ($image = $request->file('image')) {
+
+            $name = Str::random(16) . '.' . $image->getClientOriginalExtension();
+            $image->storePubliclyAs('public/images', $name);
+            $posting->image_path = $name;
+        }
+
         $posting->save();
+
+        // $posting->categories()->attach($request->get('category_ids'));
 
         return redirect()->route('postings.index')->with('success', 'Posting created!!!');
     }
@@ -131,6 +144,12 @@ class PostingController extends Controller
     public function destroy($id)
     {
         $posting = Posting::find($id);
+
+        if ($posting->image_path) {
+
+            Storage::delete('public/images/'.$posting->image_path);
+        }
+
         $posting->delete();
 
         return redirect()->route('postings.index')->with('success', 'Posting deleted!');
