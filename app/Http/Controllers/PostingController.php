@@ -69,6 +69,9 @@ class PostingController extends Controller
         $posting->is_featured = $request->has('is_featured');
         $posting->user_id = auth()->id();
 
+        // https://laravel.com/docs/7.x/filesystem#file-uploads
+        // https://laravel.com/docs/7.x/filesystem#the-public-disk
+
         if ($image = $request->file('image')) {
 
             $name = Str::random(16) . '.' . $image->getClientOriginalExtension();
@@ -95,6 +98,16 @@ class PostingController extends Controller
 
         return view('postings.show', compact('posting')); // ['posting' => $posting]
     }
+
+
+    /*
+    public function showTestme($country, $id)
+    {
+        $posting = Posting::find($id);
+
+        return view('postings.show', compact('posting')); // ['posting' => $posting]
+    }
+    */
 
     /**
      * Show the form for editing the specified resource.

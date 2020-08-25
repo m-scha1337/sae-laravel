@@ -151,3 +151,6 @@ Database:
     php artisan migrate:refresh
     php artisan db:seed
 
+Link storage files:
+
+    php artisan storage:link

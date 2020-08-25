@@ -32,6 +32,13 @@
         </ul>
 
         <ul class="navbar-nav ml-auto">
+
+            @foreach(config('app.available_locales') as $lang)
+                <li class="nav-item">
+                    <a href="?lang={{ $lang }}" class="nav-link">{{ strtoupper($lang) }}</a>
+                </li>
+            @endforeach
+
             @if(auth()->check())
                 <li class="nav-item">
                     <a href="#" class="nav-link">{{ auth()->user()->name }}</a>
