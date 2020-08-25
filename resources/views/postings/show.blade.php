@@ -40,6 +40,10 @@
 				<i class="fa fa-pencil"></i> Edit
 			</a>
 
+			<a href="{{ route('postings.showPdf', $posting->id) }}" class="btn btn-primary">
+				<i class="fa fa-file-pdf-o"></i> PDF
+			</a>
+
 			<form method="post" action="{{ route('postings.destroy', $posting->id) }}" autocomplete="off" onsubmit="return confirm('Are you sure?')">
 
 				@method('delete')

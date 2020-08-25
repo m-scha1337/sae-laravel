@@ -99,6 +99,15 @@ class PostingController extends Controller
         return view('postings.show', compact('posting')); // ['posting' => $posting]
     }
 
+    public function showPdf($id)
+    {
+        $posting = Posting::find($id);
+
+        return app('dompdf.wrapper')
+            ->loadView('postings.pdf', compact('posting'))
+            ->stream('posting.pdf');
+    }
+
 
     /*
     public function showTestme($country, $id)
