@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,26 +23,26 @@ Route::get('/', function () {
 
 // == Auth
 
-Route::get('/login', 'AuthController@getLogin')->name('auth.getLogin');
-Route::post('/login', 'AuthController@postLogin')->name('auth.postLogin');
-Route::get('/logout', 'AuthController@logout')->name('auth.logout');
+Route::get('/login', [AuthController::class, 'getLogin'])->name('auth.getLogin');
+Route::post('/login', [AuthController::class, 'postLogin'])->name('auth.postLogin');
+Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 
 // == Postings
 
 Route::middleware(['lang'])->group(function() {
 
-    Route::get('/postings', 'PostingController@index')->name('postings.index');
+    Route::get('/postings', [PostingController::class, 'index'])->name('postings.index');
 
     Route::middleware(['auth'])->group(function() {
 
-        Route::get('/postings/create', 'PostingController@create')->name('postings.create');
-        Route::post('/postings', 'PostingController@store')->name('postings.store');
-        Route::get('/postings/{id}', 'PostingController@show')->name('postings.show'); // ->middleware('auth');
-        Route::get('/postings/{id}/pdf', 'PostingController@showPdf')->name('postings.showPdf');
-        Route::get('/postings/{id}/edit', 'PostingController@edit')->name('postings.edit');
-        Route::put('/postings/{id}', 'PostingController@update')->name('postings.update');
-        Route::delete('/postings/{id}', 'PostingController@destroy')->name('postings.destroy');
+        Route::get('/postings/create', [PostingController::class, 'create'])->name('postings.create');
+        Route::post('/postings', [PostingController::class, 'store'])->name('postings.store');
+        Route::get('/postings/{id}', [PostingController::class, 'show'])->name('postings.show'); // ->middleware('auth');
+        Route::get('/postings/{id}/pdf', [PostingController::class, 'showPdf'])->name('postings.showPdf');
+        Route::get('/postings/{id}/edit', [PostingController::class, 'edit'])->name('postings.edit');
+        Route::put('/postings/{id}', [PostingController::class, 'update'])->name('postings.update');
+        Route::delete('/postings/{id}', [PostingController::class, 'destroy'])->name('postings.destroy');
     });
 });
 
